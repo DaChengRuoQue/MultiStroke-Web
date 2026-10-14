@@ -79,6 +79,24 @@ class VideoPageTests(unittest.TestCase):
             ),
         )
 
+    def test_video_uses_dynamic_viewport_height(self):
+        self.assertRegex(
+            self.html,
+            re.compile(
+                r"body\s*\{[^}]*height:\s*100vh;"
+                r"[^}]*height:\s*100dvh;",
+                re.DOTALL,
+            ),
+        )
+        self.assertRegex(
+            self.html,
+            re.compile(
+                r"video\s*\{[^}]*max-height:\s*100vh;"
+                r"[^}]*max-height:\s*100dvh;",
+                re.DOTALL,
+            ),
+        )
+
 
 if __name__ == "__main__":
     unittest.main()
